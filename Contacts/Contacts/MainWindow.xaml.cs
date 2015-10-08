@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Twilio;
 
 namespace Contacts
 {
@@ -24,6 +25,8 @@ namespace Contacts
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
+
+
     {
         Contact selectedContact;
 
@@ -125,8 +128,8 @@ namespace Contacts
                 ObservableCollection<Contact> contactsFromFile = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(json);
 
                 dataGridContacts.ItemsSource = contactsFromFile;
-                    }
             }
+        }
 
         private void menutItem_Save_Click(object sender, RoutedEventArgs e)
         {
@@ -147,6 +150,7 @@ namespace Contacts
                 System.IO.File.WriteAllText(saveFile.FileName, json);
             }
         }
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -178,10 +182,12 @@ namespace Contacts
                 case MessageBoxResult.Cancel:
                     e.Cancel = true;
                     break;
+
+                    
             }
+
+
         }
-
-
     }
 }
 
